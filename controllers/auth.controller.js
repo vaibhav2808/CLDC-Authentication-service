@@ -17,10 +17,11 @@ exports.register = async (req, res) => {
     throw new ApiError('User with given email or handle already exists', 409)
   }
   const hashedPassword = await bcrypt.hash(password, 10)
-  console.log(await User.create({
+  const user = await User.create({
     email, password: hashedPassword, name
-  }))
-  return res.status(200).json({ success: true })
+  })
+  const token = getAuthenticationToken(user)
+  return res.status(200).json({ token })
 }
 
 exports.login = async (req, res) => {

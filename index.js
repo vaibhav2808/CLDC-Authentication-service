@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const databaseConfig = require('./config/database')
 const passport = require('passport')
 const JwtStrategy = require('./auth/jwt')
+const cors = require('cors')
 
 const { errorHandler } = require('./middlewares/error')
 const route = require('./routes/index')
@@ -13,10 +14,11 @@ const route = require('./routes/index')
 const logger = morgan('dev')
 
 passport.use('jwt', JwtStrategy)
+app.use(cors())
 app.use(logger)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use('/api', route)
+app.use('/', route)
 
 app.use(errorHandler)
 
