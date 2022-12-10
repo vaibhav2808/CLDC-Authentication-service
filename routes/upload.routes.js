@@ -6,4 +6,6 @@ const catchAsync = require('../utils/catchAsync')
 
 router.post('/', [fileUploadMiddleware.single('file'), passport.authenticate('jwt', { session: false })], catchAsync(uploadController.upload))
 
+router.get('/:id', catchAsync(uploadController.getImageDetails))
+
 module.exports = router

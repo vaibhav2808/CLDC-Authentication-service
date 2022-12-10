@@ -79,6 +79,18 @@ const upload = async (req, res) => {
   res.status(200).json(image)
 }
 
+const getImageDetails = async (req, res) => {
+  const imageId = req.params.id
+  const image = await Image.findById(imageId).populate('userId')
+  if (!image) {
+    return res.status(404).json({
+      message: 'Image not found'
+    })
+  }
+  res.status(200).json(image)
+}
+
 module.exports = {
-  upload
+  upload,
+  getImageDetails
 }
