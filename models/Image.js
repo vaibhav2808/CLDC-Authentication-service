@@ -53,8 +53,15 @@ const schema = new mongoose.Schema({
   fileId: {
     type: String,
     required: true
+  },
+  isTagged: {
+    type: Boolean,
+    default: false
+  },
+  isObjectionable: {
+    type: Boolean,
+    default: false
   }
-
 },
 
 { timestamps: true })
