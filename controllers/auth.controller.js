@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
 
   if (isPasswordCorrect) {
     const token = getAuthenticationToken(user)
-    res.send(token)
+    res.send({ token })
   } else {
     throw new ApiError('Incorrect Password', 401)
   }
@@ -46,5 +46,5 @@ exports.getAccessToken = async (req, res) => {
 
   const token = tokenHeader.split(' ')[1]
   const accessToken = getAccessToken(token)
-  res.status(200).json({ accessToken })
+  res.status(200).json(accessToken)
 }

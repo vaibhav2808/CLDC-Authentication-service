@@ -5,7 +5,7 @@ const passport = require('passport')
 
 router.put('/', catchAsync(userController.updateUser))
 
-router.get('/details', passport.authenticate('jwt', { session: false }), catchAsync(userController.getUserByUserId))
+router.get('/details', passport.authenticate('jwt', { session: false }), catchAsync(userController.getUser))
 
 router.get('/details/:id', catchAsync(userController.getUserByUserId))
 
