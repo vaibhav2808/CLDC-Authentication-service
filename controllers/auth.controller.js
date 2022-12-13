@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
     email, password: hashedPassword, name
   })
   const token = getAuthenticationToken(user)
-  return res.status(200).json({ token })
+  return res.status(200).json({ token, user })
 }
 
 exports.login = async (req, res) => {
@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
 
   if (isPasswordCorrect) {
     const token = getAuthenticationToken(user)
-    res.send({ token })
+    res.send({ token, user })
   } else {
     throw new ApiError('Incorrect Password', 401)
   }
